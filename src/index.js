@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {SpeechProvider} from '@speechly/react-client'
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 
 import App from './App';
 import './index.css';
 
 import { Provider } from './context/context';
 
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 ReactDOM.render(
-    <SpeechProvider appId="7aa066e8-41d5-45c7-9f9b-0cfa0fef85ef" language="en-US">
-        <Provider>
-        <App />
-        </Provider>
-    </SpeechProvider>,
-    document.getElementById('root')
+  <Provider>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );

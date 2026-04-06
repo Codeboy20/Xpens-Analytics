@@ -1,9 +1,26 @@
-#root, body, html {
-    height: 100%;
-    margin: 0;
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
 }
 
 body {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(./assets/money2.webp);
-    /* background-size: cover; */
+  font-family: "Trebuchet MS", "Gill Sans", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(132, 152, 255, 0.14), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(111, 225, 214, 0.16), transparent 34%),
+    linear-gradient(145deg, #f8fbff 0%, #f3f7ff 48%, #eef4ff 100%);
+  color: #182235;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }

@@ -1,34 +1,44 @@
 import React, { useReducer, createContext } from 'react';
 import contextReducer from './contextReducer';
 
-const initialState = JSON.parse(localStorage.getItem('transactions')) || [{ "amount": 100, "category": "Salary", "type": "Income", "date": "2021-05-24", "id": "e9309fff-3a78-4648-8cf6-d1dbcf509f8b" }];
+const initialState = [];
 
-export const ExpenseTrackerContext = createContext(initialState);
+export const ExpenseTrackerContext = createContext({
+  transactions: initialState,
+  balance: 0,
+  addTransaction: () => {},
+  deleteTransaction: () => {},
+});
 
 export const Provider = ({ children }) => {
-    const [transactions, dispatch] = useReducer(contextReducer, initialState)//complex version of useState
+  const [transactions, dispatch] = useReducer(contextReducer, initialState);
 
-    console.log(transactions);
-    //Action creators
-    const deleteTransaction = (id) => {
-        dispatch({ type: 'DELETE_TRANSACTION', payload: id });
-    }
+  const deleteTransaction = (id) => {
+    dispatch({ type: 'DELETE_TRANSACTION', payload: id });
+  };
 
-    const addTransaction = (transaction) => {
-        dispatch({ type: 'ADD_TRANSACTION', payload: transaction });
-    }
+  const addTransaction = (transaction) => {
+    dispatch({ type: 'ADD_TRANSACTION', payload: transaction });
+  };
 
-    const balance = transactions.reduce((acc, curVal) =>
-        curVal.type === 'Expense' ? acc - curVal.amount : acc + curVal.amount, 0);
+  const balance = transactions.reduce(
+    (accumulator, currentValue) =>
+      currentValue.type === 'Expense'
+        ? accumulator - currentValue.amount
+        : accumulator + currentValue.amount,
+    0
+  );
 
-    return (
-        <ExpenseTrackerContext.Provider value={{
-            deleteTransaction,
-            addTransaction,
-            transactions,
-            balance
-        }}>
-            {children}
-        </ExpenseTrackerContext.Provider>
-    )
-}
+  return (
+    <ExpenseTrackerContext.Provider
+      value={{
+        deleteTransaction,
+        addTransaction,
+        transactions,
+        balance,
+      }}
+    >
+      {children}
+    </ExpenseTrackerContext.Provider>
+  );
+};
