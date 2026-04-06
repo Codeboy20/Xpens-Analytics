@@ -41,9 +41,6 @@ const App = () => {
             </div>
 
             <div className={classes.topBarButtons}>
-              <Button variant="outlined" className={classes.topBarGhostButton}>
-                Explore
-              </Button>
               <Button
                 variant="contained"
                 endIcon={<ArrowForwardRounded />}
@@ -101,9 +98,6 @@ const App = () => {
                   onClick={() => setShowDashboard(true)}
                 >
                   Open Dashboard
-                </Button>
-                <Button variant="outlined" className={classes.secondaryHeroAction}>
-                  View Overview
                 </Button>
               </div>
             </div>
